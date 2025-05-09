@@ -14,6 +14,8 @@
 # define RIGHT 100
 # define ROT_L 65361
 # define ROT_R 65363
+# define DOOR_OPEN 101
+# define DOOR_CLOSE 102
 # define MINIMAP_RADIUS 5
 # define MINIMAP_TILE 10
 # define screenWidth 1240
@@ -85,6 +87,9 @@ typedef struct s_tmp{
     int        tex_y;
     int        tex_pos;
     int        color;
+    int        open_door;
+    int        door_y;
+    int        door_x;
 
 }              t_tmp;
 
@@ -98,6 +103,13 @@ typedef struct s_keys{
     int        key_rot_l;
 }              t_keys;
 
+typedef struct s_door{
+
+    int        door_x;
+    int        door_y;
+    int        is_open;
+}              t_door;
+
 typedef struct s_info{
 
     int        TILE_SIZE;
@@ -106,6 +118,8 @@ typedef struct s_info{
     int **     map;
     int        map_h;
     int        map_w;
+    int        n_doors;
+    t_door     doors[1];
     t_ray      ray;
     t_player   player;
     t_mlx      mlx;
