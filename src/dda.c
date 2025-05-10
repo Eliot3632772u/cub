@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:47:39 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/10 09:47:55 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/10 15:00:43 by irabhi           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
@@ -87,7 +87,6 @@ void	distance_to_wall(t_info *info, int column)
 	mapX = (int)(info->player.pX / info->TILE_SIZE);
 	mapY = (int)(info->player.pY / info->TILE_SIZE);
 	calc_ray_angle(info, column);
-	calc_dist(info, mapX, mapY);
 	calc_delta(info);
 	ray_increment(info, mapX, mapY);
 	dda(info, mapX, mapY);

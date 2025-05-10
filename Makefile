@@ -1,6 +1,6 @@
 NAME = Cube
 
-SRC = src/main.c 
+SRC = src/main.c src/animation.c src/dda_init_values.c src/dda.c src/doors.c src/draw_frame_utils.c src/draw_frame.c src/init.c src/key_hooks.c src/minimap.c src/movements.c src/ray_casting.c src/rotation.c src/wall_height.c 
 
 OBJ = ${SRC:.c=.o}
 

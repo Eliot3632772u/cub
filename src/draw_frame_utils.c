@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_frame_utils.c                                 :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:55:17 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/10 09:57:15 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/10 15:10:24 by irabhi           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
@@ -24,6 +24,14 @@ void	my_mlx_pixel_put(t_mlx *img, int x, int y, int color)
 
 t_texture	*select_texture(t_info *info)
 {
+
+	if (info->ray.mapX > -1 && info->ray.mapY > -1 &&\
+		info->map[info->ray.mapY][info->ray.mapX] == 3)
+   {
+	   info->ray.mapX = -1;
+	   info->ray.mapY = -1;
+	   return (&info->mlx.tex[5]);
+   }
 	if (info->ray.mapX > -1 && info->ray.mapY > -1 &&\
 		 info->map[info->ray.mapY][info->ray.mapX] == 2)
 	{

@@ -59,7 +59,7 @@ typedef struct  s_mlx{
     int     line_len;
     int     bpp;
     int     endian;
-    t_texture  tex[6];
+    t_texture  tex[10];
     int         cel_clr;
     int         flr_clr;
 
@@ -119,7 +119,7 @@ typedef struct s_info{
     int        map_h;
     int        map_w;
     int        n_doors;
-    t_door     *doors;
+    t_door     doors[1];
     t_ray      ray;
     t_player   player;
     t_mlx      mlx;

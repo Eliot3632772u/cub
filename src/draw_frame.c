@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw_frame.c                                       :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:51:25 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/10 09:57:44 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/10 14:50:20 by irabhi           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
@@ -23,7 +23,7 @@ void	put_wall_util(t_info *info, double step, double tex_pos, int column)
 	int		tex_y;
 
 	y = info->tmp.wall_start;
-	while (y < info->tmp.wall_start + info->tmp.wall_end && y < screenHeight)
+	while (y < info->tmp.wall_start + info->tmp.wall_h && y < screenHeight)
 	{
 		tex_y = (int)tex_pos;
 		if (tex_y >= 0 && tex_y < info->tmp.tex->height &&\
