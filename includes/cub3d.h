@@ -119,7 +119,7 @@ typedef struct s_info{
     int        map_h;
     int        map_w;
     int        n_doors;
-    t_door     doors[1];
+    t_door     *doors;
     t_ray      ray;
     t_player   player;
     t_mlx      mlx;
@@ -128,5 +128,45 @@ typedef struct s_info{
 }              t_info;
 
 
-int key_hook(void *inf);
-
+void		update_tex(t_info *info);
+double		deg_to_rad(double degrees);
+void		calc_ray_angle(t_info *info, int column);
+void		ray_increment(t_info *info, int mapX, int mapY);
+void		calc_delta(t_info *info);
+void		store_wall_hit(t_info *info,int mapY, int mapX, int side);
+void		dist_to_wall(t_info *info, int side);
+void		tex_column(t_info *info, int side);
+void		dda(t_info *info, int mapX, int mapY);
+void		distance_to_wall(t_info *info, int column);
+void		open_door(t_info *info);
+void		close_door(t_info *info);
+void		my_mlx_pixel_put(t_mlx *img, int x, int y, int color);
+t_texture	*select_texture(t_info *info);
+void		put_wall_util(t_info *info, double step, double tex_pos, int column);
+void		put_wall(t_info *info, int column);
+void		put_floor(t_info *info, int column);
+void		put_ceiling(t_info *info, int column);
+void		render(t_info *info, int column);
+int			key_hook(void *inf);
+int			press(int keycode, void *inf);
+int			release(int keycode, void *inf);
+int			pick_color(t_info *info, int map_x, int map_y);
+void		put_map_pix(t_info *info, int screen_x, int screen_y, int color);
+void		draw_minimap_util(t_info *info, int player_map_x, int player_map_y, int dy);
+void		draw_minimap(t_info *info);
+void		draw_minimap_player(t_info *info);
+void		move_forward(t_info *info);
+void		move_back(t_info *info);
+void		move_left(t_info *info);
+void		move_right(t_info *info);
+int			mouse_move(int x, int y, void *inf);
+void		draw_wall(t_info *info, int column);
+int			raycasting(void *inf);
+void		rotate_left(t_info *info);
+void		rotate_right(t_info *info);
+int			calc_wall_height(t_info *info);
+void		init_tex_util(t_info *info);
+void		init_tex(t_info *info);
+void		init_mlx(t_info *info);
+void		init_vars(t_info *info);
+void		init_map_data(t_info *info);
