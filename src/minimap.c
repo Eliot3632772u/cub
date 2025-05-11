@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
@@ -6,20 +6,21 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:00:44 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/10 10:01:24 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/11 13:24:31 by irabhi           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 int	pick_color(t_info *info, int map_x, int map_y)
 {
-	if (info->map[map_y][map_x] == 0)
+	if (info->map[map_y][map_x] == '0')
 		return (0xCCCCCC);
-	else if (info->map[map_y][map_x] == 1 || info->map[map_y][map_x] == 3)
+	else if (info->map[map_y][map_x] == '1')
 		return (0x444444);
-	else if (info->map[map_y][map_x] == 2)
+	else if (info->map[map_y][map_x] == '2')
 		return (0x0000);
+	
 	return (0);
 }
 
@@ -54,7 +55,8 @@ void	draw_minimap_util(t_info *info, int player_map_x, int player_map_y, int dy)
 	{
 		map_x = player_map_x + dx;
 		map_y = player_map_y + dy;
-		if (map_x < 0 || map_y < 0 || map_x >= info->map_w || map_y >= info->map_h)
+		if (map_x < 0 || map_y < 0 || map_x >= info->map_w ||\
+			map_y >= info->map_h || info->map[map_y][map_x] == ' ')
 		{
 			dx++;
 			continue;

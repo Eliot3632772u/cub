@@ -6,7 +6,7 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:55:17 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/10 15:10:24 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/11 13:24:59 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	my_mlx_pixel_put(t_mlx *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || y < 0 || x >= screenWidth || y >= screenHeight)
-		return;
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
@@ -26,19 +24,12 @@ t_texture	*select_texture(t_info *info)
 {
 
 	if (info->ray.mapX > -1 && info->ray.mapY > -1 &&\
-		info->map[info->ray.mapY][info->ray.mapX] == 3)
-   {
+		info->map[info->ray.mapY][info->ray.mapX] == '2')
+   	{
 	   info->ray.mapX = -1;
 	   info->ray.mapY = -1;
 	   return (&info->mlx.tex[5]);
-   }
-	if (info->ray.mapX > -1 && info->ray.mapY > -1 &&\
-		 info->map[info->ray.mapY][info->ray.mapX] == 2)
-	{
-		info->ray.mapX = -1;
-		info->ray.mapY = -1;
-		return (&info->mlx.tex[4]);
-	}
+   	}
 	if (info->ray.side == 0)
 	{
 		if (info->ray.dX < 0)

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:03:36 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/10 10:05:43 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/11 12:02:53 by soujaour         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
@@ -23,7 +23,7 @@ void move_forward(t_info *info)
 	dy = sin(info->player.angle);
 	stepx = ((info->player.pX + dx * (MOVE_SPEED +20))  )/ info->TILE_SIZE;
 	stepy = ((info->player.pY +dy * (MOVE_SPEED+ 20))  )/ info->TILE_SIZE;
-	if (info->map[stepy][stepx] != 0)
+	if (info->map[stepy][stepx] != '0')
 		return ;
 	info->player.pX += dx * MOVE_SPEED;
 	info->player.pY += dy * MOVE_SPEED;
@@ -40,7 +40,7 @@ void move_back(t_info *info)
 	dy = sin(info->player.angle);
 	stepx = ((info->player.pX- dx * (MOVE_SPEED + 20)) ) / info->TILE_SIZE;
 	stepy = ((info->player.pY - dy * (MOVE_SPEED + 20)) ) / info->TILE_SIZE;
-	if (info->map[stepy][stepx] != 0)
+	if (info->map[stepy][stepx] != '0')
 		return ;
 	info->player.pX -= dx * MOVE_SPEED;
 	info->player.pY -= dy * MOVE_SPEED;
@@ -59,7 +59,7 @@ void move_left(t_info *info)
 	dy = sin(angle);
 	stepx = ((info->player.pX + dx * (MOVE_SPEED + 20)) )/ info->TILE_SIZE;
 	stepy = ((info->player.pY + dy * (MOVE_SPEED  + 20))  ) / info->TILE_SIZE;
-	if (info->map[stepy][stepx] != 0)
+	if (info->map[stepy][stepx] != '0')
 		return ;
 	info->player.pX += dx * MOVE_SPEED;
 	info->player.pY += dy * MOVE_SPEED;
@@ -78,7 +78,7 @@ void move_right(t_info *info)
 	dy = sin(angle);
 	stepx = ((info->player.pX + dx * (MOVE_SPEED + 20))) / info->TILE_SIZE;
 	stepy = ((info->player.pY + dy * (MOVE_SPEED + 20))) / info->TILE_SIZE;
-	if (info->map[stepy][stepx] != 0)
+	if (info->map[stepy][stepx] != '0')
 		return ;
 	info->player.pX += dx * MOVE_SPEED;
 	info->player.pY += dy * MOVE_SPEED;

@@ -6,7 +6,7 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:47:39 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/10 15:00:43 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/11 14:26:24 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 void	store_wall_hit(t_info *info,int mapY, int mapX, int side)
 {
-	if (mapY >= 0 && mapX >= 0)
-	{
-		info->ray.mapX = mapX;
-		info->ray.mapY = mapY;
-	}
+	info->ray.mapX = mapX;
+	info->ray.mapY = mapY;
 	info->ray.side = side;
 }
 
@@ -46,10 +43,7 @@ void	tex_column(t_info *info, int side)
 	info->ray.hit_x = fmod(info->ray.hit_x, info->TILE_SIZE);
 	info->ray.tex_x =\
 	(int)(info->ray.hit_x / info->TILE_SIZE * info->mlx.tex[0].width);
-	if (side == 0 && info->ray.dX > 0)
-		info->ray.tex_x = info->mlx.tex[0].width - info->ray.tex_x - 1;
-	if (side == 1 && info->ray.dY < 0)
-		info->ray.tex_x = info->mlx.tex[0].width - info->ray.tex_x - 1;
+	(void)side;
 }
 
 void	dda(t_info *info, int mapX, int mapY)
@@ -71,7 +65,7 @@ void	dda(t_info *info, int mapX, int mapY)
 			side = 1;
 		}
 		if (mapX < 0 || mapX >= info->map_w || mapY < 0 ||\
-			mapY >= info->map_h || info->map[mapY][mapX] != 0)
+			mapY >= info->map_h || info->map[mapY][mapX] != '0')
 			break;
 	}
 	store_wall_hit(info, mapY, mapX, side);

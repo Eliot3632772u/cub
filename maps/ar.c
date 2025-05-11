@@ -6,17 +6,11 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:44:58 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/11 11:55:14 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/11 11:13:56 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-# define FLOOR 'F'
-# define CEILING 'C'
-# define EMPTY ' '
-# define WALL '1'
-# define SPACE '0'
 
 char	*get_next_line_wrapper(int fd)
 {
@@ -284,6 +278,7 @@ void	count_layouts(t_info *info)
 	if (info->map_w == 0 || info->map_h == 0)
 		free_elems(info, MAP_ERR_MSG);
 	info->map_h -= empty;
+	printf("map_h: %i map_w: %i\n", info->map_h, info->map_w);
 }
 
 void	allocate_map_array(t_info *info)
@@ -340,8 +335,8 @@ void	copy_each_row(t_info *info, char *line, ssize_t i, ssize_t *j)
 		{
 			if (ft_strchr("NSEW", line[*j]) && flag == 0)
 			{
-				info->p_x = *j;
-				info->p_y = i;
+				info->p_x = i;
+				info->p_y = *j;
 				flag = 1;
 			}
 			else if (ft_strchr("NSEW", line[*j]) && flag == 1)
@@ -509,6 +504,34 @@ void	parse_file(t_info *info)
 	close(info->fd);
 }
 
+void	init_map_data(t_info *info)
+{
+	info->map_h = 0;
+	info->map_w = 0;
+	info->mlx.cel_clr = 0;
+    info->mlx.flr_clr = 0;
+	info->map = NULL;
+	info->north = NULL;
+	info->south = NULL;
+	info->east = NULL;
+	info->west = NULL;
+	info->doors = NULL;
+	info->n_doors = 0;
+    parse_file(info);
+	info->player.pX = info->p_x * info->TILE_SIZE;
+    info->player.pY = info->p_y * info->TILE_SIZE;
+	if (info->map[info->p_y][info->p_x] == 'N')
+		info->player.angle = deg_to_rad(90);
+	else if (info->map[info->p_y][info->p_x] == 'S')
+		info->player.angle = deg_to_rad(270);
+	else if (info->map[info->p_y][info->p_x] == 'E')
+		info->player.angle = deg_to_rad(180);
+	else if (info->map[info->p_y][info->p_x] == 'W')
+		info->player.angle = deg_to_rad(0);
+	init_tex(info);
+	print_my_elems(info);
+}
+
 void	free_all(t_info *info)
 {
 	free(info->north);
@@ -548,14 +571,14 @@ void	print_my_elems(t_info *info)
 			printf("%c", info->map[i][j]);
 		printf("\n");
 	}
-	printf("\nPlayer: %c (%zu, %zu)\n", info->map[info->p_y][info->p_x], info->p_x, info->p_y);
+	printf("\nPlayer: %c (%zu, %zu)\n", info->map[info->p_x - 1][info->p_y - 1], info->p_x, info->p_y);
 	int z = -1;
 	printf("Num of doors: %d\n", info->n_doors);
 	while (++z < info->n_doors)
 	{
 		printf("(%i, %i)", info->doors[z].door_x, info->doors[z].door_y);
 	}
-	// free_all(info);
+	free_all(info);
 }
 
 // int main(int ac, char *av[])
