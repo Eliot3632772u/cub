@@ -6,7 +6,7 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:55:17 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/11 13:24:59 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/11 21:50:23 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ t_texture	*select_texture(t_info *info)
 	if (info->ray.side == 0)
 	{
 		if (info->ray.dX < 0)
-			return (&info->mlx.tex[0]); // tex[0] in west texture
+			return (&info->mlx.tex[2]); // tex[0] in west texture
 		else
-			return (&info->mlx.tex[1]); // tex[1] is east texture
+			return (&info->mlx.tex[3]); // tex[1] is east texture
 	}
 	else
 	{
 		if (info->ray.dY < 0)
-			return (&info->mlx.tex[2]);// tex[2] is north texture	
+			return (&info->mlx.tex[0]);// tex[2] is north texture	
 		else
-			return (&info->mlx.tex[3]); // tex[3] is south texture
+			return (&info->mlx.tex[1]); // tex[3] is south texture
 	}
 }

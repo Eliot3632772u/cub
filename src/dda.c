@@ -6,7 +6,7 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:47:39 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/11 14:26:24 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/11 21:49:23 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,28 @@ void	dist_to_wall(t_info *info, int side)
 
 void	tex_column(t_info *info, int side)
 {
+	int		tex_width;
+
+	tex_width = 64;
+	if (info->map[info->ray.mapY][info->ray.mapX] == '2')
+		tex_width = info->mlx.tex[5].width;
+	else if (side == 0)
+	{
+		if (info->ray.dX < 0)
+			tex_width = info->mlx.tex[3].width;
+		else
+			tex_width = info->mlx.tex[2].width;
+	}
+	else if (side == 1)
+	{
+		if (info->ray.dY < 0)
+			tex_width = info->mlx.tex[0].width;
+		else
+			tex_width = info->mlx.tex[1].width;
+	}
 	info->ray.hit_x = fmod(info->ray.hit_x, info->TILE_SIZE);
 	info->ray.tex_x =\
-	(int)(info->ray.hit_x / info->TILE_SIZE * info->mlx.tex[0].width);
-	(void)side;
+	(int)(info->ray.hit_x / info->TILE_SIZE * tex_width);
 }
 
 void	dda(t_info *info, int mapX, int mapY)
