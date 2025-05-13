@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 
 # include <stdio.h>
 # include <math.h>
@@ -17,6 +17,7 @@
 # define RIGHT 100
 # define ROT_L 65361
 # define ROT_R 65363
+# define ESC 65307
 # define DOOR_OPEN 101
 # define DOOR_CLOSE 102
 # define MINIMAP_RADIUS 5
@@ -181,6 +182,7 @@ void		init_tex(t_info *info);
 void		init_mlx(t_info *info);
 void		init_vars(t_info *info);
 void		init_map_data(t_info *info);
+int    		exit_prog(void *inf);
 
 void		parse_file(t_info *info);
 void		print_my_elems(t_info *info);

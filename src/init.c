@@ -6,7 +6,7 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:49:28 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/11 21:51:20 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/12 10:15:57 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	init_tex(t_info *info)
 		, &info->mlx.tex[3].width, &info->mlx.tex[3].height);
 	info->mlx.tex[4].img = mlx_xpm_file_to_image(info->mlx.con, "./textures/door_b.xpm"
 		, &info->mlx.tex[4].width, &info->mlx.tex[4].height);
-	printf("%s\n", info->north);
-		
 	info->mlx.tex[5].img = mlx_xpm_file_to_image(info->mlx.con, "./textures/respawn_anchor_side0.xpm" 
 		, &info->mlx.tex[5].width, &info->mlx.tex[5].height);
 	info->mlx.tex[6].img = mlx_xpm_file_to_image(info->mlx.con, "./textures/respawn_anchor_side1.xpm" 

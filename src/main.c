@@ -29,6 +29,7 @@ int main(int ac, char **av)
   mlx_hook(info.mlx.win, 3, 1L<<1, release, &info);
   mlx_hook(info.mlx.win, 2, 1L<<0, press, &info);
   mlx_hook(info.mlx.win, 6, 1L<<6, mouse_move, &info);
+  mlx_hook(info.mlx.win, 17, 0, exit_prog, &info);
   mlx_loop_hook(info.mlx.con, raycasting, &info);
   mlx_loop(info.mlx.con);
 }
