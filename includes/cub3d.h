@@ -22,29 +22,31 @@
 # define DOOR_CLOSE 102
 # define MINIMAP_RADIUS 5
 # define MINIMAP_TILE 10
-# define screenWidth 1240
-# define screenHeight 780
+# define SCREENWIDTH 1240
+# define SCREENHIGHT 780
 
 # define GENERIC_ERR_MSG "Fatal Issue Occured"
 # define MAP_ERR_MSG "Invalid Map"
 
 
-typedef struct  s_player{
+typedef struct  s_player
+{
 
-	double      pX;
-	double      pY;
-	double      dX;
-	double      dY;
-	double      step_X;
-	double      step_Y;
-	double      sideX;
-	double      sideY;
+	double      px;
+	double      py;
+	double      dx;
+	double      dy;
+	double      step_x;
+	double      step_y;
+	double      side_x;
+	double      side_y;
 	double      angle;
 	double      dist_to_wall;
 
 }               t_player;
 
-typedef struct  s_texture{
+typedef struct  s_texture
+{
 
 	void    *img;
 	char    *addr;
@@ -56,7 +58,8 @@ typedef struct  s_texture{
 
 }               t_texture;
 
-typedef struct  s_mlx{
+typedef struct  s_mlx
+{
 
 	void*       win;
 	void*       con;
@@ -71,20 +74,22 @@ typedef struct  s_mlx{
 
 }               t_mlx;
 
-typedef struct s_ray{
+typedef struct s_ray
+{
 
 	double     angle;
-	double     dX;
-	double     dY;
+	double     dx;
+	double     dy;
 	double     hit_x;
 	int        tex_x;
-	int        mapX;
-	int        mapY;
+	int        map_x;
+	int        map_y;
 	int        side;
 
 }              t_ray;
 
-typedef struct s_tmp{
+typedef struct s_tmp
+{
 
 	int        wall_h;
 	int        wall_start;
@@ -99,7 +104,8 @@ typedef struct s_tmp{
 
 }              t_tmp;
 
-typedef struct s_keys{
+typedef struct s_keys
+{
 
 	int        key_forward;
 	int        key_back;
@@ -109,7 +115,8 @@ typedef struct s_keys{
 	int        key_rot_l;
 }              t_keys;
 
-typedef struct s_door{
+typedef struct s_door
+{
 
 	int        door_x;
 	int        door_y;
@@ -118,7 +125,7 @@ typedef struct s_door{
 
 typedef struct s_info
 {
-	int        TILE_SIZE;
+	int        tile_size;
 	double     fov;
 	t_tmp      tmp;
 	char        **map;

@@ -6,7 +6,7 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:49:28 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/12 10:15:57 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/13 12:12:25 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ void	init_mlx(t_info *info)
 	info->mlx.con = mlx_init();
 	if (info->mlx.con == NULL)
 		exit (1);
-	info->mlx.win = mlx_new_window(info->mlx.con, screenWidth, screenHeight, "cube");
+	info->mlx.win = mlx_new_window(info->mlx.con, SCREENWIDTH, SCREENHIGHT, "cube");
 	if (info->mlx.win == NULL)
 	{
 		mlx_destroy_display(info->mlx.con);
 		exit(1);
 	}
-	info->mlx.img = mlx_new_image(info->mlx.con, screenWidth, screenHeight);
+	info->mlx.img = mlx_new_image(info->mlx.con, SCREENWIDTH, SCREENHIGHT);
 	if (!info->mlx.img)
 	{
 		mlx_destroy_window(info->mlx.con, info->mlx.win);
@@ -85,15 +85,15 @@ void	init_mlx(t_info *info)
 
 void	init_vars(t_info *info)
 {
-	info->ray.mapX = -1;
-	info->ray.mapY = -1;
+	info->ray.map_x = -1;
+	info->ray.map_y = -1;
 	info->keys.key_back = 0;
 	info->keys.key_forward = 0;
 	info->keys.key_left = 0;
 	info->keys.key_right = 0;
 	info->keys.key_rot_l = 0;
 	info->keys.key_rot_r = 0;
-	info->TILE_SIZE = 64;
+	info->tile_size = 64;
 	info->fov = 60;
 }
 
@@ -124,8 +124,8 @@ void	init_map_data(t_info *info)
 	info->n_doors = 0;
     parse_file(info);
 	info->player.angle = select_angle(info);
-	info->player.pX = info->p_x * info->TILE_SIZE;
-    info->player.pY = info->p_y * info->TILE_SIZE;
+	info->player.px = info->p_x * info->tile_size + 0.5 * info->tile_size;
+    info->player.py = info->p_y * info->tile_size + 0.5 * info->tile_size;
 	info->map[info->p_y][info->p_x] = '0';
 	init_tex(info);
 	print_my_elems(info);

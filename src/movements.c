@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:03:36 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/11 12:02:53 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:14:41 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void move_forward(t_info *info)
 
 	dx = cos(info->player.angle);
 	dy = sin(info->player.angle);
-	stepx = ((info->player.pX + dx * (MOVE_SPEED +20))  )/ info->TILE_SIZE;
-	stepy = ((info->player.pY +dy * (MOVE_SPEED+ 20))  )/ info->TILE_SIZE;
+	stepx = ((info->player.px + dx * (MOVE_SPEED +20))  )/ info->tile_size;
+	stepy = ((info->player.py +dy * (MOVE_SPEED+ 20))  )/ info->tile_size;
 	if (info->map[stepy][stepx] != '0')
 		return ;
-	info->player.pX += dx * MOVE_SPEED;
-	info->player.pY += dy * MOVE_SPEED;
+	info->player.px += dx * MOVE_SPEED;
+	info->player.py += dy * MOVE_SPEED;
 }
 
 void move_back(t_info *info)
@@ -38,12 +38,12 @@ void move_back(t_info *info)
 
 	dx = cos(info->player.angle);
 	dy = sin(info->player.angle);
-	stepx = ((info->player.pX- dx * (MOVE_SPEED + 20)) ) / info->TILE_SIZE;
-	stepy = ((info->player.pY - dy * (MOVE_SPEED + 20)) ) / info->TILE_SIZE;
+	stepx = ((info->player.px - dx * (MOVE_SPEED + 20))) / info->tile_size;
+	stepy = ((info->player.py - dy * (MOVE_SPEED + 20))) / info->tile_size;
 	if (info->map[stepy][stepx] != '0')
 		return ;
-	info->player.pX -= dx * MOVE_SPEED;
-	info->player.pY -= dy * MOVE_SPEED;
+	info->player.px -= dx * MOVE_SPEED;
+	info->player.py -= dy * MOVE_SPEED;
 }
 
 void move_left(t_info *info)
@@ -57,12 +57,12 @@ void move_left(t_info *info)
 	angle = info->player.angle - PI / 2;
 	dx = cos(angle);
 	dy = sin(angle);
-	stepx = ((info->player.pX + dx * (MOVE_SPEED + 20)) )/ info->TILE_SIZE;
-	stepy = ((info->player.pY + dy * (MOVE_SPEED  + 20))  ) / info->TILE_SIZE;
+	stepx = ((info->player.px + dx * (MOVE_SPEED + 20))) / info->tile_size;
+	stepy = ((info->player.py + dy * (MOVE_SPEED  + 20))) / info->tile_size;
 	if (info->map[stepy][stepx] != '0')
 		return ;
-	info->player.pX += dx * MOVE_SPEED;
-	info->player.pY += dy * MOVE_SPEED;
+	info->player.px += dx * MOVE_SPEED;
+	info->player.py += dy * MOVE_SPEED;
 }
 
 void move_right(t_info *info)
@@ -76,12 +76,12 @@ void move_right(t_info *info)
 	angle = info->player.angle + PI / 2;
 	dx = cos(angle);
 	dy = sin(angle);
-	stepx = ((info->player.pX + dx * (MOVE_SPEED + 20))) / info->TILE_SIZE;
-	stepy = ((info->player.pY + dy * (MOVE_SPEED + 20))) / info->TILE_SIZE;
+	stepx = ((info->player.px + dx * (MOVE_SPEED + 20))) / info->tile_size;
+	stepy = ((info->player.py + dy * (MOVE_SPEED + 20))) / info->tile_size;
 	if (info->map[stepy][stepx] != '0')
 		return ;
-	info->player.pX += dx * MOVE_SPEED;
-	info->player.pY += dy * MOVE_SPEED;
+	info->player.px += dx * MOVE_SPEED;
+	info->player.py += dy * MOVE_SPEED;
 }
 
 int mouse_move(int x, int y, void *inf)

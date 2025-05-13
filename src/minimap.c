@@ -6,7 +6,7 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:00:44 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/11 13:24:31 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/13 12:12:45 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	draw_minimap(t_info *info)
     int		player_map_y;
 	int		dy;
 
-	player_map_x = info->player.pX / info->TILE_SIZE;
-	player_map_y = info->player.pY / info->TILE_SIZE;
+	player_map_x = info->player.px / info->tile_size;
+	player_map_y = info->player.py / info->tile_size;
 	dy = -MINIMAP_RADIUS;
 	while (dy <= MINIMAP_RADIUS)
 	{

@@ -6,7 +6,7 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:47:39 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/11 21:49:23 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/13 12:09:48 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	store_wall_hit(t_info *info,int mapY, int mapX, int side)
 {
-	info->ray.mapX = mapX;
-	info->ray.mapY = mapY;
+	info->ray.map_x = mapX;
+	info->ray.map_y= mapY;
 	info->ray.side = side;
 }
 
@@ -24,16 +24,16 @@ void	dist_to_wall(t_info *info, int side)
 	if (side == 0)
 	{
 		info->player.dist_to_wall =\
-		(info->player.sideX - info->player.dX) * info->TILE_SIZE;
+		(info->player.side_x - info->player.dx) * info->tile_size;
 		info->ray.hit_x =\
-		info->player.pY + info->player.dist_to_wall * sin(info->ray.angle);
+		info->player.py + info->player.dist_to_wall * sin(info->ray.angle);
 	}
 	else
 	{
 		info->player.dist_to_wall =\
-		(info->player.sideY - info->player.dY) * info->TILE_SIZE;
+		(info->player.side_y - info->player.dy) * info->tile_size;
 		info->ray.hit_x =\
-		info->player.pX + info->player.dist_to_wall * cos(info->ray.angle);
+		info->player.px + info->player.dist_to_wall * cos(info->ray.angle);
 	}
 	info->player.dist_to_wall *= cos(info->ray.angle - info->player.angle);
 }
@@ -43,25 +43,25 @@ void	tex_column(t_info *info, int side)
 	int		tex_width;
 
 	tex_width = 64;
-	if (info->map[info->ray.mapY][info->ray.mapX] == '2')
+	if (info->map[info->ray.map_y][info->ray.map_x] == '2')
 		tex_width = info->mlx.tex[5].width;
 	else if (side == 0)
 	{
-		if (info->ray.dX < 0)
+		if (info->ray.dx < 0)
 			tex_width = info->mlx.tex[3].width;
 		else
 			tex_width = info->mlx.tex[2].width;
 	}
 	else if (side == 1)
 	{
-		if (info->ray.dY < 0)
+		if (info->ray.dy < 0)
 			tex_width = info->mlx.tex[0].width;
 		else
 			tex_width = info->mlx.tex[1].width;
 	}
-	info->ray.hit_x = fmod(info->ray.hit_x, info->TILE_SIZE);
+	info->ray.hit_x = fmod(info->ray.hit_x, info->tile_size);
 	info->ray.tex_x =\
-	(int)(info->ray.hit_x / info->TILE_SIZE * tex_width);
+	(int)(info->ray.hit_x / info->tile_size * tex_width);
 }
 
 void	dda(t_info *info, int mapX, int mapY)
@@ -70,16 +70,16 @@ void	dda(t_info *info, int mapX, int mapY)
 
 	while (1)
 	{
-		if (info->player.sideX < info->player.sideY)
+		if (info->player.side_x < info->player.side_y)
 		{
-			info->player.sideX += info->player.dX;
-			mapX += info->player.step_X;
+			info->player.side_x += info->player.dx;
+			mapX += info->player.step_x;
 			side = 0;
 		}
 		else
 		{
-			info->player.sideY += info->player.dY;
-			mapY += info->player.step_Y;
+			info->player.side_y += info->player.dy;
+			mapY += info->player.step_y;
 			side = 1;
 		}
 		if (mapX < 0 || mapX >= info->map_w || mapY < 0 ||\
@@ -96,8 +96,8 @@ void	distance_to_wall(t_info *info, int column)
 	int		mapX;
 	int		mapY;
 
-	mapX = (int)(info->player.pX / info->TILE_SIZE);
-	mapY = (int)(info->player.pY / info->TILE_SIZE);
+	mapX = (int)(info->player.px / info->tile_size);
+	mapY = (int)(info->player.py / info->tile_size);
 	calc_ray_angle(info, column);
 	calc_delta(info);
 	ray_increment(info, mapX, mapY);

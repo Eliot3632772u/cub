@@ -6,7 +6,7 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:51:25 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/10 14:50:20 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/13 12:04:26 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	put_wall_util(t_info *info, double step, double tex_pos, int column)
 	int		tex_y;
 
 	y = info->tmp.wall_start;
-	while (y < info->tmp.wall_start + info->tmp.wall_h && y < screenHeight)
+	while (y < info->tmp.wall_start + info->tmp.wall_h && y < SCREENHIGHT)
 	{
 		tex_y = (int)tex_pos;
 		if (tex_y >= 0 && tex_y < info->tmp.tex->height &&\
@@ -46,7 +46,7 @@ void	put_wall(t_info *info, int column)
 
 	info->tmp.tex = select_texture(info);
 	step = (double)info->tmp.tex->height / info->tmp.wall_h;
-	tex_pos = (info->tmp.wall_start - screenHeight / 2 + info->tmp.wall_h / 2)\
+	tex_pos = (info->tmp.wall_start - SCREENHIGHT / 2 + info->tmp.wall_h / 2)\
 	 * step;
 	put_wall_util(info, step, tex_pos, column);
 }
@@ -57,7 +57,7 @@ void	put_floor(t_info *info, int column)
 	int	y;
 
 	y = info->tmp.wall_end;
-	while (y < screenHeight)
+	while (y < SCREENHIGHT)
 	{
 		my_mlx_pixel_put(&info->mlx, column, y, info->mlx.flr_clr);
 		y++;
@@ -78,12 +78,12 @@ void	put_ceiling(t_info *info, int column)
 
 void	render(t_info *info, int column)
 {
-	info->tmp.wall_start = (screenHeight / 2) - (info->tmp.wall_h / 2);
+	info->tmp.wall_start = (SCREENHIGHT / 2) - (info->tmp.wall_h / 2);
 	info->tmp.wall_end = info->tmp.wall_start + info->tmp.wall_h;
 	if (info->tmp.wall_start < 0)
 		info->tmp.wall_start = 0;
-	if (info->tmp.wall_end > screenHeight)
-		info->tmp.wall_end = screenHeight;
+	if (info->tmp.wall_end > SCREENHIGHT)
+		info->tmp.wall_end = SCREENHIGHT;
 	put_ceiling(info, column);
 	put_wall(info, column);
 	put_floor(info, column);

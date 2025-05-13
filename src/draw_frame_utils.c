@@ -6,7 +6,7 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:55:17 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/11 21:50:23 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/13 12:11:12 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,23 @@ void	my_mlx_pixel_put(t_mlx *img, int x, int y, int color)
 t_texture	*select_texture(t_info *info)
 {
 
-	if (info->ray.mapX > -1 && info->ray.mapY > -1 &&\
-		info->map[info->ray.mapY][info->ray.mapX] == '2')
+	if (info->ray.map_x > -1 && info->ray.map_y > -1 &&\
+		info->map[info->ray.map_y][info->ray.map_x] == '2')
    	{
-	   info->ray.mapX = -1;
-	   info->ray.mapY = -1;
+	   info->ray.map_x = -1;
+	   info->ray.map_y = -1;
 	   return (&info->mlx.tex[5]);
    	}
 	if (info->ray.side == 0)
 	{
-		if (info->ray.dX < 0)
+		if (info->ray.dx < 0)
 			return (&info->mlx.tex[2]); // tex[0] in west texture
 		else
 			return (&info->mlx.tex[3]); // tex[1] is east texture
 	}
 	else
 	{
-		if (info->ray.dY < 0)
+		if (info->ray.dy < 0)
 			return (&info->mlx.tex[0]);// tex[2] is north texture	
 		else
 			return (&info->mlx.tex[1]); // tex[3] is south texture

@@ -6,7 +6,7 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:08:00 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/11 12:55:15 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/13 12:18:44 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void open_door(t_info *info)
 	int		py;
 	int		i;
 
-    px = (int)((info->player.pX + cos(info->player.angle) * 90)\
-	 / info->TILE_SIZE);
-    py = (int)((info->player.pY + sin(info->player.angle) * 90)\
-	 / info->TILE_SIZE);
+    px = (int)((info->player.px + cos(info->player.angle) * 90)\
+	 / info->tile_size);
+    py = (int)((info->player.py + sin(info->player.angle) * 90)\
+	 / info->tile_size);
 	if (info->map[py][px] == '2')
 	{
 		i = 0;
@@ -44,10 +44,10 @@ void close_door(t_info *info)
 	int		py;
 	int		i;
 
-	px = (int)((info->player.pX + cos(info->player.angle) * 90)\
-	 / info->TILE_SIZE);
-	py = (int)((info->player.pY + sin(info->player.angle) * 90)\
-	 / info->TILE_SIZE);
+	px = (int)((info->player.px + cos(info->player.angle) * 90)\
+	 / info->tile_size);
+	py = (int)((info->player.py + sin(info->player.angle) * 90)\
+	 / info->tile_size);
 	i = 0;
 	while (i < info->n_doors)
 	{
