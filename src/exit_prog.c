@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_prog.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:53:05 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/13 10:04:06 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/15 11:19:03 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int    exit_prog(void *inf)
 {
-    t_info  *info;
+	t_info  *info;
 
-    info = inf;
-    (void)info;
-    printf("exit_prog func called\n");
-    exit(0);
+	info = inf;
+	free_textures(info);
+	free_and_exit(info, NULL, NULL);
+	printf("exit_prog func called\n");
+	exit(0);
+	return (0);
 }

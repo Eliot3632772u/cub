@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:26:20 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/05 08:58:19 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/15 08:52:22 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,18 +88,6 @@ static char	*extract_line(char *buffer)
 	return (ft_substr_gnl(buffer, 0, i + 1));
 }
 
-size_t	number_of_invocations(int flag)
-{
-	static size_t	number = 0;
-	static size_t	actual = 0;
-
-	if (flag == 0)
-		number++;
-	else if (flag == 1)
-		actual = number;
-	return (actual);
-}
-
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
@@ -123,6 +111,5 @@ char	*get_next_line(int fd)
 		free(buffer);
 		buffer = NULL;
 	}
-	number_of_invocations(0);
 	return (line);
 }

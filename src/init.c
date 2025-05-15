@@ -3,16 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:49:28 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/13 12:12:25 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/15 11:31:52 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+void	free_textures(t_info *info)
+{
+	int	i;
 
+	i = -1;
+	printf("SIZE of t_tex: %zu\n", sizeof(t_texture));
+	while (++i < 10)
+	{
+		if (info->mlx.tex[i].img)
+		{
+			printf("%i %p\n", i, info->mlx.tex[i].img);
+			mlx_destroy_image(info->mlx.con, info->mlx.tex[i].img);
+		}
+	}
+}
 
 void	init_tex_util(t_info *info)
 {
@@ -23,9 +37,8 @@ void	init_tex_util(t_info *info)
 	{
 		if (info->mlx.tex[i].img == NULL)
 		{
-			mlx_destroy_window(info->mlx.con, info->mlx.win);
-			mlx_destroy_display(info->mlx.con);
-			free_elems(info, "TEXTURES");
+			free_textures(info);
+			free_and_exit(info, NULL, "Invalid Textures");
 		}
 	}
 	i = -1;
@@ -37,8 +50,24 @@ void	init_tex_util(t_info *info)
 	}
 }
 
+void	set_tex(t_info *info)
+{
+	info->mlx.tex[0].img = NULL;
+	info->mlx.tex[1].img = NULL;
+	info->mlx.tex[2].img = NULL;
+	info->mlx.tex[3].img = NULL;
+	info->mlx.tex[4].img = NULL;
+	info->mlx.tex[5].img = NULL;
+	info->mlx.tex[6].img = NULL;
+	info->mlx.tex[7].img = NULL;
+	info->mlx.tex[8].img = NULL;
+	info->mlx.tex[9].img = NULL;
+}
+
 void	init_tex(t_info *info)
 {
+	// ft_memset(&info->mlx.tex, 0, sizeof(t_texture) * 10);
+	set_tex(info);
 	info->mlx.tex[0].img = mlx_xpm_file_to_image(info->mlx.con, info->north 
 		, &info->mlx.tex[0].width, &info->mlx.tex[0].height);
 	info->mlx.tex[1].img = mlx_xpm_file_to_image(info->mlx.con, info->south 
@@ -97,24 +126,14 @@ void	init_vars(t_info *info)
 	info->fov = 60;
 }
 
-double	select_angle(t_info *info)
-{
-	if (info->map[info->p_y][info->p_x] == 'N')
-		return(deg_to_rad(270));
-	else if (info->map[info->p_y][info->p_x] == 'S')
-		return(deg_to_rad(90));
-	else if (info->map[info->p_y][info->p_x] == 'E')
-		return(deg_to_rad(0));
-	else
-		return(deg_to_rad(180));
-}
-
 void	init_map_data(t_info *info)
 {
 	info->map_h = 0;
 	info->map_w = 0;
 	info->mlx.cel_clr = 0;
-    info->mlx.flr_clr = 0;
+	info->mlx.flr_clr = 0;
+	info->p_x = 0;
+	info->p_y = 0;
 	info->map = NULL;
 	info->north = NULL;
 	info->south = NULL;
@@ -128,5 +147,17 @@ void	init_map_data(t_info *info)
     info->player.py = info->p_y * info->tile_size + 0.5 * info->tile_size;
 	info->map[info->p_y][info->p_x] = '0';
 	init_tex(info);
-	print_my_elems(info);
+	// print_my_elems(info);
 }
+
+
+// 106102872080800
+// 106102872080928
+// 106102872081056
+// 106102872081184
+// 106102872081312
+// 106102872081568
+// 106102872081696
+// 106102872081824
+// 106102872081952
+// 106102872081568

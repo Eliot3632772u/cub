@@ -27,11 +27,15 @@
 
 # define GENERIC_ERR_MSG "Fatal Issue Occured"
 # define MAP_ERR_MSG "Invalid Map"
+# define FLOOR 'F'
+# define CEILING 'C'
+# define EMPTY ' '
+# define WALL '1'
+# define SPACE '0'
 
 
-typedef struct  s_player
+typedef struct s_player
 {
-
 	double      px;
 	double      py;
 	double      dx;
@@ -42,12 +46,10 @@ typedef struct  s_player
 	double      side_y;
 	double      angle;
 	double      dist_to_wall;
+}	t_player;
 
-}               t_player;
-
-typedef struct  s_texture
+typedef struct s_texture
 {
-
 	void    *img;
 	char    *addr;
 	int     line_len;
@@ -55,12 +57,10 @@ typedef struct  s_texture
 	int     endian;
 	int     width;
 	int     height;
-
-}               t_texture;
+}	t_texture;
 
 typedef struct  s_mlx
 {
-
 	void*       win;
 	void*       con;
 	void*       img;
@@ -71,12 +71,10 @@ typedef struct  s_mlx
 	t_texture  tex[10];
 	int         cel_clr;
 	int         flr_clr;
-
-}               t_mlx;
+}	t_mlx;
 
 typedef struct s_ray
 {
-
 	double     angle;
 	double     dx;
 	double     dy;
@@ -85,12 +83,10 @@ typedef struct s_ray
 	int        map_x;
 	int        map_y;
 	int        side;
-
-}              t_ray;
+}	t_ray;
 
 typedef struct s_tmp
 {
-
 	int        wall_h;
 	int        wall_start;
 	int        wall_end;
@@ -101,51 +97,48 @@ typedef struct s_tmp
 	int        open_door;
 	int        door_y;
 	int        door_x;
-
-}              t_tmp;
+}	t_tmp;
 
 typedef struct s_keys
 {
-
 	int        key_forward;
 	int        key_back;
 	int        key_left;
 	int        key_right;
 	int        key_rot_r;
 	int        key_rot_l;
-}              t_keys;
+}	t_keys;
 
 typedef struct s_door
 {
-
 	int        door_x;
 	int        door_y;
 	int        is_open;
-}              t_door;
+}	t_door;
 
 typedef struct s_info
 {
-	int        tile_size;
-	double     fov;
-	t_tmp      tmp;
-	char        **map;
-	int        map_h;
-	int        map_w;
-	int        n_doors;
+	int			tile_size;
+	double		fov;
+	t_tmp		tmp;
+	char		**map;
+	int			map_h;
+	int			map_w;
+	int			n_doors;
 	char		*north;
 	char		*south;
 	char		*east;
 	char		*west;
 	char		*file_name;
 	int			fd;
-	size_t      p_x;
-	size_t      p_y;
-	t_door     *doors;
-	t_ray      ray;
-	t_player   player;
-	t_mlx      mlx;
-	t_keys     keys;
-}              t_info;
+	size_t		p_x;
+	size_t		p_y;
+	t_door		*doors;
+	t_ray		ray;
+	t_player	player;
+	t_mlx		mlx;
+	t_keys		keys;
+}	t_info;
 
 void		update_tex(t_info *info);
 double		deg_to_rad(double degrees);
@@ -189,8 +182,10 @@ void		init_tex(t_info *info);
 void		init_mlx(t_info *info);
 void		init_vars(t_info *info);
 void		init_map_data(t_info *info);
-int    		exit_prog(void *inf);
+int			exit_prog(void *inf);
 
+void		free_textures(t_info *info);
 void		parse_file(t_info *info);
+double		select_angle(t_info *info);
 void		print_my_elems(t_info *info);
-void		free_elems(t_info *info, char *error);
+void		free_and_exit(t_info *info, char *alloc, char *error_msg);
