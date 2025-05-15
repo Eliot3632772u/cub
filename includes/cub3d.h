@@ -140,7 +140,7 @@ typedef struct s_info
 	t_keys		keys;
 }	t_info;
 
-void		update_tex(t_info *info);
+t_texture	*update_tex(t_info *info);
 double		deg_to_rad(double degrees);
 void		calc_ray_angle(t_info *info, int column);
 void		ray_increment(t_info *info, int mapX, int mapY);

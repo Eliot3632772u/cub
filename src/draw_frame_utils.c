@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_frame_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:55:17 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/13 12:11:12 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/15 14:25:23 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_texture	*select_texture(t_info *info)
    	{
 	   info->ray.map_x = -1;
 	   info->ray.map_y = -1;
-	   return (&info->mlx.tex[5]);
+	   return (update_tex(info));
    	}
 	if (info->ray.side == 0)
 	{

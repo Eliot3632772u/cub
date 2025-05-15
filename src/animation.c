@@ -3,33 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:01:43 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/11 20:30:16 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/15 14:28:14 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void update_tex(t_info *info)
+t_texture	*update_tex(t_info *info)
 {
 	static int	frame;
-	t_texture	*tmp;
-	int	i;
+	static int  idx = 4;
 
 	if (frame != 60)
 	{
 		frame++;
-		return ;
+		return (&info->mlx.tex[idx]);
 	}
 	frame = 0;
-	tmp = &info->mlx.tex[5];
-	i = 5;
-	while (i < 9)
-	{
-		info->mlx.tex[i] = info->mlx.tex[i + 1];
-		i++;
-	}
-	info->mlx.tex[i] = *tmp;
+	idx++;
+	if (idx > 9)
+		idx = 5;
+	return (&info->mlx.tex[idx]);
 }

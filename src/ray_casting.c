@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:58:51 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/13 12:14:52 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/15 14:27:39 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ int raycasting(void *inf)
 	mlx_put_image_to_window(info->mlx.con, info->mlx.win, info->mlx.img, 0, 0);
 	draw_minimap(info);
 	draw_minimap_player(info);
-	update_tex(info);
 	return 0;
 }
