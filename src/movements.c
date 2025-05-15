@@ -6,25 +6,70 @@
 /*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:03:36 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/13 12:14:41 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/15 16:21:31 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void move_forward(t_info *info)
+int check_inter(t_info *info, double angle, double offset_angle)
 {
 	double	dx;
 	double	dy;
 	int		stepx;
 	int		stepy;
+	double	i;
+
+	i = -3;
+	while (i < 3)
+	{
+		offset_angle = angle + (i * 0.05);
+		dx = cos(offset_angle);
+		dy = sin(offset_angle);
+		stepx = (info->player.px + dx * (MOVE_SPEED + 20)) / info->tile_size;
+		stepy = (info->player.py + dy * (MOVE_SPEED + 20)) / info->tile_size;
+		if (stepx < 0 || stepx >= info->map_w || stepy < 0 ||\
+		stepy >= info->map_h || info->map[stepy][stepx] != '0')
+			return 1;
+		i += 0.2;
+	}
+	return 0;
+}
+
+int check_inter_back(t_info *info, double angle, double offset_angle)
+{
+	double	dx;
+	double	dy;
+	int		stepx;
+	int		stepy;
+	double	i;
+
+	i = -3;
+	while (i < 3)
+	{
+		offset_angle = angle + (i * 0.05);
+		dx = cos(offset_angle);
+		dy = sin(offset_angle);
+		stepx = (info->player.px - dx * (MOVE_SPEED + 20)) / info->tile_size;
+		stepy = (info->player.py - dy * (MOVE_SPEED + 20)) / info->tile_size;
+		if (stepx < 0 || stepx >= info->map_w || stepy < 0 ||\
+		stepy >= info->map_h || info->map[stepy][stepx] != '0')
+			return 1;
+		i += 0.2;
+	}
+	return 0;
+}
+
+
+void move_forward(t_info *info)
+{
+	double dx;
+	double dy;
 
 	dx = cos(info->player.angle);
 	dy = sin(info->player.angle);
-	stepx = ((info->player.px + dx * (MOVE_SPEED +20))  )/ info->tile_size;
-	stepy = ((info->player.py +dy * (MOVE_SPEED+ 20))  )/ info->tile_size;
-	if (info->map[stepy][stepx] != '0')
-		return ;
+	if (check_inter(info, info->player.angle, 0))
+		return;
 	info->player.px += dx * MOVE_SPEED;
 	info->player.py += dy * MOVE_SPEED;
 }
@@ -33,15 +78,11 @@ void move_back(t_info *info)
 {
 	double	dx;
 	double	dy;
-	int		stepx;
-	int		stepy;
 
 	dx = cos(info->player.angle);
 	dy = sin(info->player.angle);
-	stepx = ((info->player.px - dx * (MOVE_SPEED + 20))) / info->tile_size;
-	stepy = ((info->player.py - dy * (MOVE_SPEED + 20))) / info->tile_size;
-	if (info->map[stepy][stepx] != '0')
-		return ;
+	if (check_inter_back(info, info->player.angle, 0))
+		return;
 	info->player.px -= dx * MOVE_SPEED;
 	info->player.py -= dy * MOVE_SPEED;
 }
@@ -51,16 +92,12 @@ void move_left(t_info *info)
 	double	angle;
 	double	dx;
 	double	dy;
-	int		stepx;
-	int		stepy;
 
 	angle = info->player.angle - PI / 2;
 	dx = cos(angle);
 	dy = sin(angle);
-	stepx = ((info->player.px + dx * (MOVE_SPEED + 20))) / info->tile_size;
-	stepy = ((info->player.py + dy * (MOVE_SPEED  + 20))) / info->tile_size;
-	if (info->map[stepy][stepx] != '0')
-		return ;
+	if (check_inter(info, angle, 0))
+		return;
 	info->player.px += dx * MOVE_SPEED;
 	info->player.py += dy * MOVE_SPEED;
 }
@@ -70,16 +107,13 @@ void move_right(t_info *info)
 	double	angle;
 	double	dx;
 	double	dy;
-	int		stepx;
-	int		stepy;
+
 
 	angle = info->player.angle + PI / 2;
 	dx = cos(angle);
 	dy = sin(angle);
-	stepx = ((info->player.px + dx * (MOVE_SPEED + 20))) / info->tile_size;
-	stepy = ((info->player.py + dy * (MOVE_SPEED + 20))) / info->tile_size;
-	if (info->map[stepy][stepx] != '0')
-		return ;
+	if (check_inter(info, angle, 0))
+		return;
 	info->player.px += dx * MOVE_SPEED;
 	info->player.py += dy * MOVE_SPEED;
 }

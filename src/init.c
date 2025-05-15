@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:49:28 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/15 12:33:28 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:42:03 by irabhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ void	init_vars(t_info *info)
 
 void	init_map_data(t_info *info)
 {
+	struct timeval		tv;
+
 	info->map_h = 0;
 	info->map_w = 0;
 	info->mlx.cel_clr = 0;
@@ -144,7 +146,9 @@ void	init_map_data(t_info *info)
     info->player.py = info->p_y * info->tile_size + 0.5 * info->tile_size;
 	info->map[info->p_y][info->p_x] = '0';
 	init_tex(info);
-	// print_my_elems(info);
+	gettimeofday(&tv, NULL);
+		// exit(1); // exit cleanly
+	info->last_time = (tv.tv_sec * 1000) + (tv.tv_sec / 1000);
 }
 
 

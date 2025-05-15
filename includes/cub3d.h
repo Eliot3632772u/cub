@@ -7,6 +7,7 @@
 # include "../minilibx-linux/mlx.h"
 # include "../minilibx-linux/mlx_int.h"
 # include "../src/libft/libft.h"
+# include <sys/time.h>
 
 # define PI 3.14159265358979323846
 # define MOVE_SPEED 3
@@ -121,6 +122,7 @@ typedef struct s_info
 	int			tile_size;
 	double		fov;
 	t_tmp		tmp;
+	int			last_time;
 	char		**map;
 	int			map_h;
 	int			map_w;
