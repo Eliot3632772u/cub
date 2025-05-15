@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:49:28 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/15 11:31:52 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/15 11:54:02 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ void	free_textures(t_info *info)
 	printf("SIZE of t_tex: %zu\n", sizeof(t_texture));
 	while (++i < 10)
 	{
-		if (info->mlx.tex[i].img)
+		if (info->mlx.tex[i].img != NULL)
 		{
 			printf("%i %p\n", i, info->mlx.tex[i].img);
 			mlx_destroy_image(info->mlx.con, info->mlx.tex[i].img);
+			info->mlx.tex[i].img = NULL;
 		}
 	}
 }
@@ -50,24 +51,22 @@ void	init_tex_util(t_info *info)
 	}
 }
 
-void	set_tex(t_info *info)
+void	initialize_textures(t_info *info)
 {
-	info->mlx.tex[0].img = NULL;
-	info->mlx.tex[1].img = NULL;
-	info->mlx.tex[2].img = NULL;
-	info->mlx.tex[3].img = NULL;
-	info->mlx.tex[4].img = NULL;
-	info->mlx.tex[5].img = NULL;
-	info->mlx.tex[6].img = NULL;
-	info->mlx.tex[7].img = NULL;
-	info->mlx.tex[8].img = NULL;
-	info->mlx.tex[9].img = NULL;
+	int	i;
+
+	i = -1;
+	while (++i < 10)
+	{
+		info->mlx.tex[i].img = NULL;
+		info->mlx.tex[i].addr = NULL;
+	}
 }
 
 void	init_tex(t_info *info)
 {
 	// ft_memset(&info->mlx.tex, 0, sizeof(t_texture) * 10);
-	set_tex(info);
+	initialize_textures(info);
 	info->mlx.tex[0].img = mlx_xpm_file_to_image(info->mlx.con, info->north 
 		, &info->mlx.tex[0].width, &info->mlx.tex[0].height);
 	info->mlx.tex[1].img = mlx_xpm_file_to_image(info->mlx.con, info->south 
