@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:49:28 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/15 11:54:02 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:33:28 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ void	initialize_textures(t_info *info)
 	while (++i < 10)
 	{
 		info->mlx.tex[i].img = NULL;
-		info->mlx.tex[i].addr = NULL;
 	}
 }
 
 void	init_tex(t_info *info)
 {
-	// ft_memset(&info->mlx.tex, 0, sizeof(t_texture) * 10);
 	initialize_textures(info);
 	info->mlx.tex[0].img = mlx_xpm_file_to_image(info->mlx.con, info->north 
 		, &info->mlx.tex[0].width, &info->mlx.tex[0].height);
