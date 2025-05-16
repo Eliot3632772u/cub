@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:44:58 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/15 11:10:27 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:50:23 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	destroy_mlx(t_info *info)
 	mlx_destroy_image(info->mlx.con, info->mlx.img);
 	mlx_destroy_window(info->mlx.con, info->mlx.win);
 	mlx_destroy_display(info->mlx.con);
+	free(info->mlx.con);
 }
 
 void	free_and_exit(t_info *info, char *alloc, char *error_msg)

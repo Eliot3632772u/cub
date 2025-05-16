@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:49:28 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/15 16:42:03 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/16 14:46:59 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ void	free_textures(t_info *info)
 	int	i;
 
 	i = -1;
-	printf("SIZE of t_tex: %zu\n", sizeof(t_texture));
 	while (++i < 10)
 	{
 		if (info->mlx.tex[i].img != NULL)
 		{
-			printf("%i %p\n", i, info->mlx.tex[i].img);
 			mlx_destroy_image(info->mlx.con, info->mlx.tex[i].img);
 			info->mlx.tex[i].img = NULL;
 		}

@@ -31,10 +31,10 @@ $(LIBFT):
 	make -C ./src/libft/
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(OBJ) $(MLXLIB) $(LIBFT) -Lmlx_linux  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -g -fsanitize=address
+	$(CC) $(OBJ) $(MLXLIB) $(LIBFT) -Lmlx_linux  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -g #-fsanitize=address
 
 %.o: %.c includes/cub3d.h
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@ -g -fsanitize=address
+	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@ -g #-fsanitize=address
 
 clean:
 	rm -rf $(OBJ)

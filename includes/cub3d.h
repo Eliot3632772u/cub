@@ -122,7 +122,7 @@ typedef struct s_info
 	int			tile_size;
 	double		fov;
 	t_tmp		tmp;
-	int			last_time;
+	size_t		last_time;
 	char		**map;
 	int			map_h;
 	int			map_w;
