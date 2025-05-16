@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:47:39 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/13 12:09:48 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/16 18:01:01 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	store_wall_hit(t_info *info,int mapY, int mapX, int side)
+void	store_wall_hit(t_info *info, int mapY, int mapX, int side)
 {
 	info->ray.map_x = mapX;
-	info->ray.map_y= mapY;
+	info->ray.map_y = mapY;
 	info->ray.side = side;
 }
 
@@ -23,16 +23,16 @@ void	dist_to_wall(t_info *info, int side)
 {
 	if (side == 0)
 	{
-		info->player.dist_to_wall =\
+		info->player.dist_to_wall = \
 		(info->player.side_x - info->player.dx) * info->tile_size;
-		info->ray.hit_x =\
+		info->ray.hit_x = \
 		info->player.py + info->player.dist_to_wall * sin(info->ray.angle);
 	}
 	else
 	{
-		info->player.dist_to_wall =\
+		info->player.dist_to_wall = \
 		(info->player.side_y - info->player.dy) * info->tile_size;
-		info->ray.hit_x =\
+		info->ray.hit_x = \
 		info->player.px + info->player.dist_to_wall * cos(info->ray.angle);
 	}
 	info->player.dist_to_wall *= cos(info->ray.angle - info->player.angle);
@@ -60,7 +60,7 @@ void	tex_column(t_info *info, int side)
 			tex_width = info->mlx.tex[1].width;
 	}
 	info->ray.hit_x = fmod(info->ray.hit_x, info->tile_size);
-	info->ray.tex_x =\
+	info->ray.tex_x = \
 	(int)(info->ray.hit_x / info->tile_size * tex_width);
 }
 
@@ -82,9 +82,9 @@ void	dda(t_info *info, int mapX, int mapY)
 			mapY += info->player.step_y;
 			side = 1;
 		}
-		if (mapX < 0 || mapX >= info->map_w || mapY < 0 ||\
+		if (mapX < 0 || mapX >= info->map_w || mapY < 0 || \
 			mapY >= info->map_h || info->map[mapY][mapX] != '0')
-			break;
+			break ;
 	}
 	store_wall_hit(info, mapY, mapX, side);
 	dist_to_wall(info, side);
@@ -93,13 +93,13 @@ void	dda(t_info *info, int mapX, int mapY)
 
 void	distance_to_wall(t_info *info, int column)
 {
-	int		mapX;
-	int		mapY;
+	int	map_x;
+	int	map_y;
 
-	mapX = (int)(info->player.px / info->tile_size);
-	mapY = (int)(info->player.py / info->tile_size);
+	map_x = (int)(info->player.px / info->tile_size);
+	map_y = (int)(info->player.py / info->tile_size);
 	calc_ray_angle(info, column);
 	calc_delta(info);
-	ray_increment(info, mapX, mapY);
-	dda(info, mapX, mapY);
+	ray_increment(info, map_x, map_y);
+	dda(info, map_x, map_y);
 }

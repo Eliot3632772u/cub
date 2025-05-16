@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:00:44 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/13 12:12:45 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/16 18:42:50 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	pick_color(t_info *info, int map_x, int map_y)
 		return (0x444444);
 	else if (info->map[map_y][map_x] == '2')
 		return (0x0000);
-	
 	return (0);
 }
 
@@ -42,24 +41,25 @@ void	put_map_pix(t_info *info, int screen_x, int screen_y, int color)
 	}
 }
 
-void	draw_minimap_util(t_info *info, int player_map_x, int player_map_y, int dy)
+void	draw_minimap_util(t_info *info, int player_map_x, \
+	int player_map_y, int dy)
 {
-	int		dx;
-	int		map_x;
-	int		map_y;
-	int		screen_x;
-	int		screen_y;
+	int	dx;
+	int	map_x;
+	int	map_y;
+	int	screen_x;
+	int	screen_y;
 
 	dx = -MINIMAP_RADIUS;
 	while (dx <= MINIMAP_RADIUS)
 	{
 		map_x = player_map_x + dx;
 		map_y = player_map_y + dy;
-		if (map_x < 0 || map_y < 0 || map_x >= info->map_w ||\
+		if (map_x < 0 || map_y < 0 || map_x >= info->map_w || \
 			map_y >= info->map_h || info->map[map_y][map_x] == ' ')
 		{
 			dx++;
-			continue;
+			continue ;
 		}
 		screen_x = (dx + MINIMAP_RADIUS) * MINIMAP_TILE;
 		screen_y = (dy + MINIMAP_RADIUS) * MINIMAP_TILE;
@@ -70,9 +70,9 @@ void	draw_minimap_util(t_info *info, int player_map_x, int player_map_y, int dy)
 
 void	draw_minimap(t_info *info)
 {
-    int		player_map_x;
-    int		player_map_y;
-	int		dy;
+	int	player_map_x;
+	int	player_map_y;
+	int	dy;
 
 	player_map_x = info->player.px / info->tile_size;
 	player_map_y = info->player.py / info->tile_size;
@@ -86,15 +86,15 @@ void	draw_minimap(t_info *info)
 
 void	draw_minimap_player(t_info *info)
 {
-    int		center_x;
-    int		center_y;
+	int		center_x;
+	int		center_y;
 	int		i;
 	int		j;
 
 	center_x = MINIMAP_RADIUS * MINIMAP_TILE;
 	center_y = MINIMAP_RADIUS * MINIMAP_TILE;
 	i = -3;
-	while (++i <=2)
+	while (++i <= 2)
 	{
 		j = -3;
 		while (++j <= 2)

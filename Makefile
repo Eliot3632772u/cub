@@ -13,8 +13,12 @@ SRC = src/main.c \
 	src/ray_casting.c \
 	src/rotation.c \
 	src/wall_height.c \
-	src/parsing.c \
-	src/exit_prog.c
+	src/exit_prog.c \
+	src/parsing/read_utils.c \
+	src/parsing/free_close_exit.c \
+	src/parsing/map_utils.c \
+	src/parsing/parse_utils.c \
+	src/parsing/parsing.c
 
 OBJ = ${SRC:.c=.o}
 
@@ -22,7 +26,7 @@ MLXLIB = ./minilibx-linux/libmlx_Linux.a
 
 LIBFT = ./src/libft/libft.a
 
-all: $(MLXLIB) $(NAME) 
+all: $(LIBFT) $(MLXLIB) $(NAME) 
 
 $(MLXLIB):
 	make -C minilibx-linux/
@@ -30,7 +34,7 @@ $(MLXLIB):
 $(LIBFT):
 	make -C ./src/libft/
 
-$(NAME): $(OBJ) $(LIBFT)
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) $(MLXLIB) $(LIBFT) -Lmlx_linux  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -g #-fsanitize=address
 
 %.o: %.c includes/cub3d.h

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irabhi <irabhi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:06:41 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/13 12:19:19 by irabhi           ###   ########.fr       */
+/*   Updated: 2025/05/16 18:45:19 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int key_hook(void *inf)
+int	key_hook(void *inf)
 {
 	t_info	*info;
-    
+
 	info = inf;
 	if (info->keys.key_forward)
 		move_forward(info);
@@ -29,10 +29,10 @@ int key_hook(void *inf)
 		rotate_left(info);
 	else if (info->keys.key_rot_r)
 		rotate_right(info);
-    return (0);
+	return (0);
 }
 
-int press(int keycode, void *inf)
+int	press(int keycode, void *inf)
 {
 	t_info	*info;
 
@@ -58,7 +58,7 @@ int press(int keycode, void *inf)
 	return (0);
 }
 
-int release(int keycode, void *inf)
+int	release(int keycode, void *inf)
 {
 	t_info	*info;
 

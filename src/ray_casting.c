@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:58:51 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/15 14:27:39 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:08:56 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	draw_wall(t_info *info, int column)
 	render(info, column);
 }
 
-int raycasting(void *inf)
+int	raycasting(void *inf)
 {
 	t_info	*info;
-	int	rays;
+	int		rays;
 
 	rays = -1;
 	info = inf;
@@ -34,5 +34,5 @@ int raycasting(void *inf)
 	mlx_put_image_to_window(info->mlx.con, info->mlx.win, info->mlx.img, 0, 0);
 	draw_minimap(info);
 	draw_minimap_player(info);
-	return 0;
+	return (0);
 }

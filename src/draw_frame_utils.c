@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:55:17 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/15 14:25:23 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:52:09 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,25 @@ void	my_mlx_pixel_put(t_mlx *img, int x, int y, int color)
 
 t_texture	*select_texture(t_info *info)
 {
-
-	if (info->ray.map_x > -1 && info->ray.map_y > -1 &&\
+	if (info->ray.map_x > -1 && info->ray.map_y > -1 && \
 		info->map[info->ray.map_y][info->ray.map_x] == '2')
-   	{
-	   info->ray.map_x = -1;
-	   info->ray.map_y = -1;
-	   return (update_tex(info));
-   	}
+	{
+		info->ray.map_x = -1;
+		info->ray.map_y = -1;
+		return (update_tex(info));
+	}
 	if (info->ray.side == 0)
 	{
 		if (info->ray.dx < 0)
-			return (&info->mlx.tex[2]); // tex[0] in west texture
+			return (&info->mlx.tex[2]);
 		else
-			return (&info->mlx.tex[3]); // tex[1] is east texture
+			return (&info->mlx.tex[3]);
 	}
 	else
 	{
 		if (info->ray.dy < 0)
-			return (&info->mlx.tex[0]);// tex[2] is north texture	
+			return (&info->mlx.tex[0]);
 		else
-			return (&info->mlx.tex[1]); // tex[3] is south texture
+			return (&info->mlx.tex[1]);
 	}
 }

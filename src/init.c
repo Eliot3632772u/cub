@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:49:28 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/16 14:46:59 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:49:18 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	init_tex_util(t_info *info)
 	i = -1;
 	while (++i < 10)
 	{
-		info->mlx.tex[i].addr = mlx_get_data_addr(info->mlx.tex[i].img,\
-		&info->mlx.tex[i].bpp, &info->mlx.tex[i].line_len,\
+		info->mlx.tex[i].addr = mlx_get_data_addr(info->mlx.tex[i].img, \
+		&info->mlx.tex[i].bpp, &info->mlx.tex[i].line_len, \
 		&info->mlx.tex[i].endian);
 	}
 }
@@ -63,26 +63,26 @@ void	initialize_textures(t_info *info)
 void	init_tex(t_info *info)
 {
 	initialize_textures(info);
-	info->mlx.tex[0].img = mlx_xpm_file_to_image(info->mlx.con, info->north 
+	info->mlx.tex[0].img = mlx_xpm_file_to_image(info->mlx.con, info->north \
 		, &info->mlx.tex[0].width, &info->mlx.tex[0].height);
-	info->mlx.tex[1].img = mlx_xpm_file_to_image(info->mlx.con, info->south 
+	info->mlx.tex[1].img = mlx_xpm_file_to_image(info->mlx.con, info->south \
 		, &info->mlx.tex[1].width, &info->mlx.tex[1].height);
-	info->mlx.tex[2].img = mlx_xpm_file_to_image(info->mlx.con, info->west 
+	info->mlx.tex[2].img = mlx_xpm_file_to_image(info->mlx.con, info->west \
 		, &info->mlx.tex[2].width, &info->mlx.tex[2].height);
-	info->mlx.tex[3].img = mlx_xpm_file_to_image(info->mlx.con, info->east 
+	info->mlx.tex[3].img = mlx_xpm_file_to_image(info->mlx.con, info->east \
 		, &info->mlx.tex[3].width, &info->mlx.tex[3].height);
-	info->mlx.tex[4].img = mlx_xpm_file_to_image(info->mlx.con, "./textures/door_b.xpm"
-		, &info->mlx.tex[4].width, &info->mlx.tex[4].height);
-	info->mlx.tex[5].img = mlx_xpm_file_to_image(info->mlx.con, "./textures/respawn_anchor_side0.xpm" 
-		, &info->mlx.tex[5].width, &info->mlx.tex[5].height);
-	info->mlx.tex[6].img = mlx_xpm_file_to_image(info->mlx.con, "./textures/respawn_anchor_side1.xpm" 
-		, &info->mlx.tex[6].width, &info->mlx.tex[6].height);
-	info->mlx.tex[7].img = mlx_xpm_file_to_image(info->mlx.con, "./textures/respawn_anchor_side2.xpm" 
-		, &info->mlx.tex[7].width, &info->mlx.tex[7].height);
-	info->mlx.tex[8].img = mlx_xpm_file_to_image(info->mlx.con, "./textures/respawn_anchor_side3.xpm" 
-		, &info->mlx.tex[8].width, &info->mlx.tex[8].height);
-	info->mlx.tex[9].img = mlx_xpm_file_to_image(info->mlx.con, "./textures/respawn_anchor_side4.xpm"
-		, &info->mlx.tex[9].width, &info->mlx.tex[9].height);
+	info->mlx.tex[4].img = mlx_xpm_file_to_image(info->mlx.con, \
+	"./tex/door_b.xpm", &info->mlx.tex[4].width, &info->mlx.tex[4].height);
+	info->mlx.tex[5].img = mlx_xpm_file_to_image(info->mlx.con, \
+	"./tex/anim0.xpm", &info->mlx.tex[5].width, &info->mlx.tex[5].height);
+	info->mlx.tex[6].img = mlx_xpm_file_to_image(info->mlx.con, \
+	"./tex/anim1.xpm", &info->mlx.tex[6].width, &info->mlx.tex[6].height);
+	info->mlx.tex[7].img = mlx_xpm_file_to_image(info->mlx.con, \
+	"./tex/anim2.xpm", &info->mlx.tex[7].width, &info->mlx.tex[7].height);
+	info->mlx.tex[8].img = mlx_xpm_file_to_image(info->mlx.con, \
+	"./tex/anim3.xpm", &info->mlx.tex[8].width, &info->mlx.tex[8].height);
+	info->mlx.tex[9].img = mlx_xpm_file_to_image(info->mlx.con, \
+	"./tex/anim4.xpm", &info->mlx.tex[9].width, &info->mlx.tex[9].height);
 	init_tex_util(info);
 }
 
@@ -91,7 +91,8 @@ void	init_mlx(t_info *info)
 	info->mlx.con = mlx_init();
 	if (info->mlx.con == NULL)
 		exit (1);
-	info->mlx.win = mlx_new_window(info->mlx.con, SCREENWIDTH, SCREENHIGHT, "cube");
+	info->mlx.win = mlx_new_window(info->mlx.con, SCREENWIDTH, SCREENHIGHT, \
+	"cube");
 	if (info->mlx.win == NULL)
 	{
 		mlx_destroy_display(info->mlx.con);
@@ -104,7 +105,8 @@ void	init_mlx(t_info *info)
 		mlx_destroy_display(info->mlx.con);
 		exit(1);
 	}
-	info->mlx.addr = mlx_get_data_addr(info->mlx.img, &info->mlx.bpp, &info->mlx.line_len, &info->mlx.endian);
+	info->mlx.addr = mlx_get_data_addr(info->mlx.img, &info->mlx.bpp, \
+	&info->mlx.line_len, &info->mlx.endian);
 }
 
 void	init_vars(t_info *info)
@@ -138,25 +140,12 @@ void	init_map_data(t_info *info)
 	info->west = NULL;
 	info->doors = NULL;
 	info->n_doors = 0;
-    parse_file(info);
+	parse_file(info);
 	info->player.angle = select_angle(info);
 	info->player.px = info->p_x * info->tile_size + 0.5 * info->tile_size;
-    info->player.py = info->p_y * info->tile_size + 0.5 * info->tile_size;
+	info->player.py = info->p_y * info->tile_size + 0.5 * info->tile_size;
 	info->map[info->p_y][info->p_x] = '0';
 	init_tex(info);
 	gettimeofday(&tv, NULL);
-		// exit(1); // exit cleanly
 	info->last_time = (tv.tv_sec * 1000) + (tv.tv_sec / 1000);
 }
-
-
-// 106102872080800
-// 106102872080928
-// 106102872081056
-// 106102872081184
-// 106102872081312
-// 106102872081568
-// 106102872081696
-// 106102872081824
-// 106102872081952
-// 106102872081568
