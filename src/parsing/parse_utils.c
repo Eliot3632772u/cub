@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:50:43 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/16 18:16:59 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 09:44:33 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,12 @@ void	parse_colors(t_info *info, char *line, char flag, int j)
 	char	*part;
 
 	i = -1;
+	j++;
 	while (++i < 3)
 	{
 		part = get_next_part(line, &j);
 		if (part == NULL)
-			free_and_exit(info, line, GENERIC_ERR_MSG);
+			free_and_exit(info, line, "Bad colors configuration");
 		error = 0;
 		value = ft_atoi(part, &error);
 		if (error == 0 && flag == FLOOR)

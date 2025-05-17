@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:44:58 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/16 18:25:57 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 09:46:28 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,16 @@ void	read_elements(t_info *info)
 		j = -1;
 		while (line[++j] && line[j] == ' ')
 			;
-		if (line[j] == 'N' && line[++j] == 'O' && line[++j] == ' ')
-			parse_texture(info, &info->north, line, j);
-		else if (line[j] == 'S' && line[++j] == 'O' && line[++j] == ' ')
-			parse_texture(info, &info->south, line, j);
-		else if (line[j] == 'W' && line[++j] == 'E' && line[++j] == ' ')
-			parse_texture(info, &info->west, line, j);
-		else if (line[j] == 'E' && line[++j] == 'A' && line[++j] == ' ')
-			parse_texture(info, &info->east, line, j);
-		else if ((line[j] == 'F' || line[j] == 'C') && line[++j] == ' ')
-			parse_colors(info, line, line[j - 1], j);
+		if (line[j] == 'N' && line[++j] == 'O') //  && line[++j] == ' '
+			parse_texture(info, &info->north, line, ++j);
+		else if (line[j] == 'S' && line[++j] == 'O')
+			parse_texture(info, &info->south, line, ++j);
+		else if (line[j] == 'W' && line[++j] == 'E')
+			parse_texture(info, &info->west, line, ++j);
+		else if (line[j] == 'E' && line[++j] == 'A')
+			parse_texture(info, &info->east, line, ++j);
+		else if (line[j] == 'F' || line[j] == 'C')
+			parse_colors(info, line, line[j], j);
 		else
 			free_and_exit(info, line, "Bad map file");
 		free(line);
