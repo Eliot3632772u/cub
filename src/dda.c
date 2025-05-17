@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:47:39 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/17 14:24:52 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 20:56:43 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ void	tex_column(t_info *info, int side)
 			tex_width = info->mlx.tex[1].width;
 	}
 	info->ray.hit_x = fmod(info->ray.hit_x, info->tile_size);
-	info->ray.tex_x = \
-	(int)(info->ray.hit_x / info->tile_size * tex_width);
+	info->ray.tex_x = (int)(info->ray.hit_x / info->tile_size * tex_width);
 }
 
 void	dda(t_info *info, int map_x, int map_y)

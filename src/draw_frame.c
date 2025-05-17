@@ -6,12 +6,13 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:51:25 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/16 18:50:40 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 16:19:24 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+// a bunch of interpolation 
 void	put_wall_util(t_info *info, double step, double tex_pos, int column)
 {
 	int		y;

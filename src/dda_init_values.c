@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:44:19 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/17 14:25:58 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 20:57:41 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ void	calc_delta(t_info *info)
 	if (info->ray.dx == 0)
 		info->player.dx = 1e30;
 	else
-		info->player.dx = sqrt(1 + (info->ray.dy * info->ray.dy) \
-		/ (info->ray.dx * info->ray.dx));
+		info->player.dx = \
+		sqrt(1 + (info->ray.dy * info->ray.dy) / (info->ray.dx * info->ray.dx));
 	if (info->ray.dy == 0)
 		info->player.dy = 1e30;
 	else
-		info->player.dy = sqrt(1 + (info->ray.dx * info->ray.dx) \
-		/ (info->ray.dy * info->ray.dy));
+		info->player.dy = \
+		sqrt(1 + (info->ray.dx * info->ray.dx) / (info->ray.dy * info->ray.dy));
 }

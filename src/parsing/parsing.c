@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:44:58 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/17 09:48:49 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 20:44:21 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	check_map(t_info *info)
 				if (info->map[i][j] == '2' && handle_door(info, i, j))
 					free_and_exit(info, NULL, MAP_ERR_MSG);
 			}
+			printf("%zu\n", j);
 		}
 	}
 }
