@@ -6,26 +6,11 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:49:28 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/16 18:49:18 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 08:43:48 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	free_textures(t_info *info)
-{
-	int	i;
-
-	i = -1;
-	while (++i < 10)
-	{
-		if (info->mlx.tex[i].img != NULL)
-		{
-			mlx_destroy_image(info->mlx.con, info->mlx.tex[i].img);
-			info->mlx.tex[i].img = NULL;
-		}
-	}
-}
 
 void	init_tex_util(t_info *info)
 {
@@ -49,20 +34,12 @@ void	init_tex_util(t_info *info)
 	}
 }
 
-void	initialize_textures(t_info *info)
-{
-	int	i;
-
-	i = -1;
-	while (++i < 10)
-	{
-		info->mlx.tex[i].img = NULL;
-	}
-}
-
 void	init_tex(t_info *info)
 {
-	initialize_textures(info);
+	static int	i = -1;
+
+	while (++i < 10)
+		info->mlx.tex[i].img = NULL;
 	info->mlx.tex[0].img = mlx_xpm_file_to_image(info->mlx.con, info->north \
 		, &info->mlx.tex[0].width, &info->mlx.tex[0].height);
 	info->mlx.tex[1].img = mlx_xpm_file_to_image(info->mlx.con, info->south \
@@ -88,20 +65,15 @@ void	init_tex(t_info *info)
 
 void	init_mlx(t_info *info)
 {
+	info->mlx.con = NULL;
+	info->mlx.win = NULL;
+	info->mlx.img = NULL;
 	info->mlx.con = mlx_init();
 	if (info->mlx.con == NULL)
 		exit (1);
-	info->mlx.win = mlx_new_window(info->mlx.con, SCREENWIDTH, SCREENHIGHT, \
-	"cube");
-	if (info->mlx.win == NULL)
-	{
-		mlx_destroy_display(info->mlx.con);
-		exit(1);
-	}
 	info->mlx.img = mlx_new_image(info->mlx.con, SCREENWIDTH, SCREENHIGHT);
 	if (!info->mlx.img)
 	{
-		mlx_destroy_window(info->mlx.con, info->mlx.win);
 		mlx_destroy_display(info->mlx.con);
 		exit(1);
 	}

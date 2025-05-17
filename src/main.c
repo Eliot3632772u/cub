@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:43:17 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/16 18:44:30 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 08:44:49 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ void	init_info(t_info *info)
 	init_mlx(info);
 	init_vars(info);
 	init_map_data(info);
+	info->mlx.win = mlx_new_window(info->mlx.con, SCREENWIDTH, SCREENHIGHT, \
+	"cube");
+	if (info->mlx.win == NULL)
+	{
+		free_and_exit(info, NULL, GENERIC_ERR_MSG);
+	}
 }
 
 int	main(int ac, char **av)

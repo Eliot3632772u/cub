@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:33:54 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/16 18:39:01 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 08:35:00 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,8 @@ typedef struct s_info
 	t_keys		keys;
 }	t_info;
 
+int			check_inter(t_info *info, double angle, double offset_angle);
+int			check_inter_back(t_info *info, double angle, double offset_angle);
 t_texture	*update_tex(t_info *info);
 double		deg_to_rad(double degrees);
 void		calc_ray_angle(t_info *info, int column);

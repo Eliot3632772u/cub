@@ -10,6 +10,7 @@ SRC = src/main.c \
 	src/key_hooks.c \
 	src/minimap.c \
 	src/movements.c \
+	src/movements_utils.c \
 	src/ray_casting.c \
 	src/rotation.c \
 	src/wall_height.c \
@@ -37,7 +38,7 @@ $(LIBFT):
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(MLXLIB) $(LIBFT) -Lmlx_linux  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -g #-fsanitize=address
 
-%.o: %.c includes/cub3d.h
+%.o: %.c includes/cub3d.h src/libft/libft.h
 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@ -g #-fsanitize=address
 
 clean:
