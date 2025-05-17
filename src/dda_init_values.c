@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:44:19 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/17 10:49:36 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 11:55:39 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	calc_ray_angle(t_info *info, int column)
 
 void	ray_increment(t_info *info, int map_x, int map_y)
 {
+	// printf("%f\t%f\n", info->ray.dx, info->ray.dy);
 	if (info->ray.dx < 0)
 	{
 		info->player.step_x = -1;
@@ -66,6 +67,7 @@ void	ray_increment(t_info *info, int map_x, int map_y)
 		info->player.side_y = ((map_y + 1) * info->tile_size - info->player.py) \
 		/ info->tile_size * info->player.dy;
 	}
+	printf("%f\t%f\n", info->player.side_x, info->player.side_y);
 }
 
 void	calc_delta(t_info *info)
@@ -73,9 +75,9 @@ void	calc_delta(t_info *info)
 	if (info->ray.dx == 0)
 		info->player.dx = 1e30;
 	else
-		info->player.dx = fabs(1.0 / info->ray.dx);
+		info->player.dx = sqrt(1 + (info->ray.dy * info->ray.dy)  / (info->ray.dx * info->ray.dx));
 	if (info->ray.dy == 0)
 		info->player.dy = 1e30;
 	else
-		info->player.dy = fabs(1.0 / info->ray.dy);
+		info->player.dy = sqrt(1 + (info->ray.dx * info->ray.dx)  / (info->ray.dy * info->ray.dy));
 }
