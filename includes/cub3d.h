@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:33:54 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/17 08:35:00 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 10:51:19 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,12 +159,12 @@ int			check_inter_back(t_info *info, double angle, double offset_angle);
 t_texture	*update_tex(t_info *info);
 double		deg_to_rad(double degrees);
 void		calc_ray_angle(t_info *info, int column);
-void		ray_increment(t_info *info, int mapX, int mapY);
+void		ray_increment(t_info *info, int map_x, int map_y);
 void		calc_delta(t_info *info);
-void		store_wall_hit(t_info *info, int mapY, int mapX, int side);
+void		store_wall_hit(t_info *info, int map_y, int map_x, int side);
 void		dist_to_wall(t_info *info, int side);
 void		tex_column(t_info *info, int side);
-void		dda(t_info *info, int mapX, int mapY);
+void		dda(t_info *info, int map_x, int map_y);
 void		distance_to_wall(t_info *info, int column);
 void		open_door(t_info *info);
 void		close_door(t_info *info);

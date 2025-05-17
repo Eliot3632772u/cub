@@ -6,16 +6,16 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:47:39 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/16 18:01:01 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 10:53:06 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	store_wall_hit(t_info *info, int mapY, int mapX, int side)
+void		store_wall_hit(t_info *info, int map_y, int map_x, int side)
 {
-	info->ray.map_x = mapX;
-	info->ray.map_y = mapY;
+	info->ray.map_x = map_x;
+	info->ray.map_y = map_y;
 	info->ray.side = side;
 }
 
@@ -64,7 +64,7 @@ void	tex_column(t_info *info, int side)
 	(int)(info->ray.hit_x / info->tile_size * tex_width);
 }
 
-void	dda(t_info *info, int mapX, int mapY)
+void		dda(t_info *info, int map_x, int map_y)
 {
 	int		side;
 
@@ -73,20 +73,20 @@ void	dda(t_info *info, int mapX, int mapY)
 		if (info->player.side_x < info->player.side_y)
 		{
 			info->player.side_x += info->player.dx;
-			mapX += info->player.step_x;
+			map_x += info->player.step_x;
 			side = 0;
 		}
 		else
 		{
 			info->player.side_y += info->player.dy;
-			mapY += info->player.step_y;
+			map_y += info->player.step_y;
 			side = 1;
 		}
-		if (mapX < 0 || mapX >= info->map_w || mapY < 0 || \
-			mapY >= info->map_h || info->map[mapY][mapX] != '0')
+		if (map_x < 0 || map_x >= info->map_w || map_y < 0 || \
+			map_y >= info->map_h || info->map[map_y][map_x] != '0')
 			break ;
 	}
-	store_wall_hit(info, mapY, mapX, side);
+	store_wall_hit(info, map_y, map_x, side);
 	dist_to_wall(info, side);
 	tex_column(info, side);
 }

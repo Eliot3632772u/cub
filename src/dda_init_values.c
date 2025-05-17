@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:44:19 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/16 18:03:23 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 10:49:36 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,37 +36,34 @@ void	calc_ray_angle(t_info *info, int column)
 	camera_x = 2.0 * (double)column / (double)SCREENWIDTH - 1.0;
 	info->ray.angle = \
 	info->player.angle + atan(camera_x * tan(deg_to_rad(info->fov) / 2));
-	info->ray.angle = fmod(info->ray.angle, 2 * PI);
-	if (info->ray.angle < 0)
-		info->ray.angle += 2 * PI;
 	info->ray.dx = cos(info->ray.angle);
 	info->ray.dy = sin(info->ray.angle);
 }
 
-void	ray_increment(t_info *info, int mapX, int mapY)
+void	ray_increment(t_info *info, int map_x, int map_y)
 {
 	if (info->ray.dx < 0)
 	{
 		info->player.step_x = -1;
-		info->player.side_x = (info->player.px - mapX * info->tile_size) \
+		info->player.side_x = (info->player.px - map_x * info->tile_size) \
 		/ info->tile_size * info->player.dx;
 	}
 	else
 	{
 		info->player.step_x = 1;
-		info->player.side_x = ((mapX + 1) * info->tile_size - info->player.px) \
+		info->player.side_x = ((map_x + 1) * info->tile_size - info->player.px) \
 		/ info->tile_size * info->player.dx;
 	}
 	if (info->ray.dy < 0)
 	{
 		info->player.step_y = -1;
-		info->player.side_y = (info->player.py - mapY * info->tile_size) \
+		info->player.side_y = (info->player.py - map_y * info->tile_size) \
 		/ info->tile_size * info->player.dy;
 	}
 	else
 	{
 		info->player.step_y = 1;
-		info->player.side_y = ((mapY + 1) * info->tile_size - info->player.py) \
+		info->player.side_y = ((map_y + 1) * info->tile_size - info->player.py) \
 		/ info->tile_size * info->player.dy;
 	}
 }
