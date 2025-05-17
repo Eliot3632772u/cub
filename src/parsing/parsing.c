@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:44:58 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/17 09:46:28 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 09:48:49 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	read_elements(t_info *info)
 		j = -1;
 		while (line[++j] && line[j] == ' ')
 			;
-		if (line[j] == 'N' && line[++j] == 'O') //  && line[++j] == ' '
+		if (line[j] == 'N' && line[++j] == 'O')
 			parse_texture(info, &info->north, line, ++j);
 		else if (line[j] == 'S' && line[++j] == 'O')
 			parse_texture(info, &info->south, line, ++j);
