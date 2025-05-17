@@ -6,13 +6,13 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:47:39 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/17 10:53:06 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/17 14:24:52 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void		store_wall_hit(t_info *info, int map_y, int map_x, int side)
+void	store_wall_hit(t_info *info, int map_y, int map_x, int side)
 {
 	info->ray.map_x = map_x;
 	info->ray.map_y = map_y;
@@ -64,7 +64,7 @@ void	tex_column(t_info *info, int side)
 	(int)(info->ray.hit_x / info->tile_size * tex_width);
 }
 
-void		dda(t_info *info, int map_x, int map_y)
+void	dda(t_info *info, int map_x, int map_y)
 {
 	int		side;
 
