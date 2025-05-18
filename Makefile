@@ -35,16 +35,7 @@ LIBFTSRCS = src/libft/ft_atoi.c \
 		src/libft/ft_tolower.c \
 		src/libft/ft_toupper.c \
 		src/libft/get_next_line.c \
-		src/libft/get_next_line_utils.c \
-		src/libft/ft_lstadd_back_bonus.c \
-		src/libft/ft_lstadd_front_bonus.c \
-		src/libft/ft_lstclear_bonus.c \
-		src/libft/ft_lstdelone_bonus.c \
-		src/libft/ft_lstiter_bonus.c \
-		src/libft/ft_lstlast_bonus.c \
-		src/libft/ft_lstmap_bonus.c \
-		src/libft/ft_lstnew_bonus.c \
-		src/libft/ft_lstsize_bonus.c
+		src/libft/get_next_line_utils.c
 
 SRC = src/main.c \
 	src/animation.c \
@@ -82,10 +73,10 @@ $(LIBFT): $(LIBFTSRCS) src/libft/libft.h
 	make -C ./src/libft/
 
 $(NAME): $(OBJ) $(LIBFTSRCS) src/libft/libft.h
-	$(CC) $(OBJ) $(MLXLIB) $(LIBFT) -Lmlx_linux  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -g #-fsanitize=address
+	$(CC) $(OBJ) $(MLXLIB) $(LIBFT) -Lmlx_linux  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c includes/cub3d.h src/libft/libft.h
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@ -g #-fsanitize=address
+	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)

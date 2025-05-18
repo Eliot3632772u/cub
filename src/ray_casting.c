@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 09:58:51 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/17 21:06:14 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/18 07:55:59 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ int	raycasting(void *inf)
 	}
 	mlx_put_image_to_window(info->mlx.con, info->mlx.win, info->mlx.img, 0, 0);
 	draw_minimap(info);
-	draw_minimap_player(info);
 	return (0);
 }

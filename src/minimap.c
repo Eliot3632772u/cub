@@ -6,13 +6,13 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:00:44 by irabhi            #+#    #+#             */
-/*   Updated: 2025/05/17 21:04:40 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/18 07:46:05 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	pick_color(t_info *info, int map_x, int map_y)
+int	color(t_info *info, int map_x, int map_y)
 {
 	if (info->map[map_y][map_x] == '0')
 		return (0xCCCCCC);
@@ -63,7 +63,10 @@ void	draw_minimap_util(t_info *info, int player_map_x, \
 		}
 		screen_x = (dx + MINIMAP_RADIUS) * MINIMAP_TILE;
 		screen_y = (dy + MINIMAP_RADIUS) * MINIMAP_TILE;
-		put_map_pix(info, screen_x, screen_y, pick_color(info, map_x, map_y));
+		if (map_x == player_map_x && map_y == player_map_y)
+			put_map_pix(info, screen_x, screen_y, 0xff0000);
+		else
+			put_map_pix(info, screen_x, screen_y, color(info, map_x, map_y));
 		dx++;
 	}
 }
@@ -81,23 +84,5 @@ void	draw_minimap(t_info *info)
 	{
 		draw_minimap_util(info, player_map_x, player_map_y, dy);
 		dy++;
-	}
-}
-
-void	draw_minimap_player(t_info *info)
-{
-	int		center_x;
-	int		center_y;
-	int		i;
-	int		j;
-
-	center_x = MINIMAP_RADIUS * MINIMAP_TILE;
-	center_y = MINIMAP_RADIUS * MINIMAP_TILE;
-	i = -3;
-	while (++i <= 2)
-	{
-		j = -3;
-		while (++j <= 2)
-			my_mlx_pixel_put(&info->mlx, center_x + j, center_y + i, 0xFF0000);
 	}
 }

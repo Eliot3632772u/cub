@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:33:54 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/17 20:55:18 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/18 07:57:26 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,12 +179,10 @@ void		render(t_info *info, int column);
 int			key_hook(void *inf);
 int			press(int keycode, void *inf);
 int			release(int keycode, void *inf);
-int			pick_color(t_info *info, int map_x, int map_y);
 void		put_map_pix(t_info *info, int screen_x, int screen_y, int color);
 void		draw_minimap_util(t_info *info, int player_map_x, \
 			int player_map_y, int dy);
 void		draw_minimap(t_info *info);
-void		draw_minimap_player(t_info *info);
 void		move_forward(t_info *info);
 void		move_back(t_info *info);
 void		move_left(t_info *info);

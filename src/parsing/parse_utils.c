@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:50:43 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/17 09:44:33 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/18 08:07:55 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	check_name(t_info *info)
 		i--;
 		j--;
 	}
-	if (j != 0)
+	if (j != 0 || info->file_name[i] != ends_with[j])
 		free_and_exit(info, NULL, "Doesn't end with .cub");
 	fd = open(info->file_name, O_RDONLY);
 	if (fd == -1)
-		free_and_exit(info, NULL, "Bad map file");
+		free_and_exit(info, NULL, "Cannot open file");
 	return (fd);
 }
 
