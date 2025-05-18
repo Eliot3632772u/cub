@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:45:37 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/16 18:16:54 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/18 15:02:59 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ bool	check_horiz(t_info *info, ssize_t i, ssize_t j)
 	const ssize_t	row = i;
 	const ssize_t	col = j;
 
+	if (i + 1 == info->map_w || i == 0)
+		return true;
 	while (++j < info->map_w)
 	{
 		if (info->map[row][j] == WALL)
@@ -41,6 +43,8 @@ bool	check_vert(t_info *info, ssize_t i, ssize_t j)
 	const ssize_t	row = i;
 	const ssize_t	col = j;
 
+	if (i + 1 == info->map_h || i == 0)
+		return true;
 	while (++i < info->map_h)
 	{
 		if (info->map[i][col] == WALL)
