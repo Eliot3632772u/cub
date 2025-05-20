@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:50:43 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/18 08:07:55 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:43:44 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ void	parse_texture(t_info *info, char **texture, char *line, int j)
 	}
 }
 
-char	*get_next_part(char *line, int *j)
+char	*get_next_part(char *line, int *j, int num)
 {
-	int	i;
-	int	k;
+	int			i;
+	int			k;
+	static int	flag;
 
 	i = 0;
 	while (line[*j] == ' ')
@@ -61,9 +62,10 @@ char	*get_next_part(char *line, int *j)
 	*j += i;
 	while (line[*j] && line[*j] == ' ')
 		(*j)++;
-	if (line[*j] != ',' && line[*j] != '\0')
+	if ((line[*j] != ',' && num < 3) || (line[*j] != '\0' && num == 3))
 		return (NULL);
 	(*j)++;
+	flag++;
 	return (ft_substr(&line[k], 0, i));
 }
 
@@ -78,7 +80,7 @@ void	parse_colors(t_info *info, char *line, char flag, int j)
 	j++;
 	while (++i < 3)
 	{
-		part = get_next_part(line, &j);
+		part = get_next_part(line, &j, i);
 		if (part == NULL)
 			free_and_exit(info, line, "Bad colors configuration");
 		error = 0;
