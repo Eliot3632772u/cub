@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:50:43 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/20 14:43:44 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:51:45 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ char	*get_next_part(char *line, int *j, int num)
 {
 	int			i;
 	int			k;
-	static int	flag;
 
 	i = 0;
 	while (line[*j] == ' ')
@@ -62,10 +61,9 @@ char	*get_next_part(char *line, int *j, int num)
 	*j += i;
 	while (line[*j] && line[*j] == ' ')
 		(*j)++;
-	if ((line[*j] != ',' && num < 3) || (line[*j] != '\0' && num == 3))
+	if ((line[*j] != ',' && num < 2) || (line[*j] != '\0' && num == 2))
 		return (NULL);
 	(*j)++;
-	flag++;
 	return (ft_substr(&line[k], 0, i));
 }
 
@@ -76,8 +74,8 @@ void	parse_colors(t_info *info, char *line, char flag, int j)
 	int		error;
 	char	*part;
 
-	i = -1;
 	j++;
+	i = -1;
 	while (++i < 3)
 	{
 		part = get_next_part(line, &j, i);
