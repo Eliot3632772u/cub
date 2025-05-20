@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:45:37 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/18 15:47:48 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:16:41 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	check_horiz(t_info *info, ssize_t i, ssize_t j)
 			break ;
 		if (info->map[row][j] == EMPTY)
 			return (true);
-		if (j + 1 == info->map_w || info->map[row][j + 1] == EMPTY)
+		if (j + 1 == info->map_w)
 			return (true);
 	}
 	j = col;
@@ -35,7 +35,7 @@ bool	check_horiz(t_info *info, ssize_t i, ssize_t j)
 			break ;
 		if (info->map[row][j] == EMPTY)
 			return (true);
-		if (j == 0 || info->map[row][j - 1] == EMPTY)
+		if (j == 0)
 			return (true);
 	}
 	return (false);
@@ -54,7 +54,7 @@ bool	check_vert(t_info *info, ssize_t i, ssize_t j)
 			break ;
 		if (info->map[i][col] == EMPTY)
 			return (true);
-		if (i + 1 == info->map_h || info->map[i + 1][col] == EMPTY)
+		if (i + 1 == info->map_h)
 			return (true);
 	}
 	i = row;
@@ -63,8 +63,8 @@ bool	check_vert(t_info *info, ssize_t i, ssize_t j)
 		if (info->map[i][col] == WALL)
 			break ;
 		if (info->map[i][col] == EMPTY)
-			break ;
-		if (i == 0 || info->map[i - 1][col] == EMPTY)
+			return (true);
+		if (i == 0)
 			return (true);
 	}
 	return (false);

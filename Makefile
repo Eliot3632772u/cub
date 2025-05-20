@@ -73,10 +73,10 @@ $(LIBFT): $(LIBFTSRCS) src/libft/libft.h
 	make -C ./src/libft/
 
 $(NAME): $(OBJ) $(LIBFTSRCS) src/libft/libft.h
-	$(CC) $(OBJ) $(MLXLIB) $(LIBFT) -Lmlx_linux  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) -Wall -Wextra -Werror -g -fsanitize=address $(OBJ) $(MLXLIB) $(LIBFT) -Lmlx_linux  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c includes/cub3d.h src/libft/libft.h
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) -Wall -Wextra -Werror -g -fsanitize=address -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)

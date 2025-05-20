@@ -2,9 +2,10 @@ NO ./tex/wall_1.xpm
 SO ./tex/wall_2.xpm
 WE ./tex/wall_3.xpm
 EA ./tex/wall_4.xpm
-F 122,0,0
-C 225,30,0
 
-1
-N
-1
+C 0,0,33
+F 60,179,110
+
+1111111
+1N00001
+1111111
