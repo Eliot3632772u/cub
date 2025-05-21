@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:50:43 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/21 09:50:40 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/21 09:52:22 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,5 @@ bool	handle_door(t_info *info, ssize_t i, ssize_t j)
 	info->doors[flag].door_x = j;
 	info->doors[flag].door_y = i;
 	info->doors[flag].is_open = 0;
-	flag++;
 	return (false);
 }
