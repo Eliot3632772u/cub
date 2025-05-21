@@ -6,7 +6,7 @@
 /*   By: soujaour <soujaour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:50:43 by soujaour          #+#    #+#             */
-/*   Updated: 2025/05/20 14:51:45 by soujaour         ###   ########.fr       */
+/*   Updated: 2025/05/21 09:50:40 by soujaour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	parse_texture(t_info *info, char **texture, char *line, int j)
 
 char	*get_next_part(char *line, int *j, int num)
 {
-	int			i;
-	int			k;
+	int	i;
+	int	k;
 
 	i = 0;
 	while (line[*j] == ' ')
@@ -112,7 +112,7 @@ bool	handle_door(t_info *info, ssize_t i, ssize_t j)
 	if (i == 0 || j == 0 || i + 1 == info->map_h || i + 1 == info->map_w)
 		return (true);
 	between_h = (info->map[i][j - 1] == '1' && info->map[i][j + 1] == '1');
-	between_v = (info->map[i - 1][j] == '1' && info->map[i - 1][j] == '1');
+	between_v = (info->map[i - 1][j] == '1' && info->map[i + 1][j] == '1');
 	if (!between_h && !between_v)
 		return (true);
 	info->doors[flag].door_x = j;
